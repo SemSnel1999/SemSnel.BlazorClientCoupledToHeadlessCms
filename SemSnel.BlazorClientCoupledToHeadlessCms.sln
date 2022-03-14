@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Src\Client\Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Host", "Src\Client.Host\Client.Host.csproj", "{0099E8E3-151E-4E82-B03B-B569EDE3E622}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80434142-ECCC-4A26-B56D-F69F51075260}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0099E8E3-151E-4E82-B03B-B569EDE3E622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0099E8E3-151E-4E82-B03B-B569EDE3E622}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0099E8E3-151E-4E82-B03B-B569EDE3E622}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A9587A6-4344-445D-BE5A-6EBF1EECE84D} = {80434142-ECCC-4A26-B56D-F69F51075260}
+		{0099E8E3-151E-4E82-B03B-B569EDE3E622} = {80434142-ECCC-4A26-B56D-F69F51075260}
 	EndGlobalSection
 EndGlobal
