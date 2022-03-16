@@ -7,6 +7,7 @@
             {
                 "contentTypeAlias" : "heroElement",
                 "model": {
+                    
                     "title" : "We are you",
                     "text" : "Hero text",
                     "subTitle" : "ABOUT US",
@@ -60,37 +61,5 @@
                 }
             }
         ]
-    },
-    "settings" : {
-        "navigation" : {
-            "links" : [
-                {
-                    "text" : "Primary Button",
-                    "link" : "index"
-                },
-                {
-                    "text" : "Secondary Button",
-                    "link" : "index"
-                }
-            ]
-        },
-        "header" : {
-            "companyName" : "Blazor CMS Coupled",
-            "actions" : [
-                {
-                    "text" : "Primary Button",
-                    "isPrimary" : true,
-                    "link" : "index"
-                },
-                {
-                    "text" : "Secondary Button",
-                    "isPrimary" : false,
-                    "link" : "index"
-                }
-            ]
-        },
-        "footer" : {
-            
-        }
     }
 }

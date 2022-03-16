@@ -1,0 +1,65 @@
+{
+  "contentTypeAlias" : "contentPage",
+  "model": {
+    "seoTitle" : "Home",
+    "seoDescription" : "This is the homepage description",
+    "elements" : [
+      {
+        "contentTypeAlias" : "heroElement",
+        "model": {
+
+          "title" : "Blazor coupled cms",
+          "text" : "Hero text",
+          "subTitle" : "ABOUT US",
+          "leadText" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "splitterVisible" : true,
+          "imageSrc" : "https://digitteck.com/wp-content/uploads/2020/06/BrandBlazor_nohalo_1000x.png",
+          "actions" : [
+            {
+              "text" : "Primary Button",
+              "isPrimary" : true,
+              "link" : "index"
+            },
+            {
+              "text" : "Secondary Button",
+              "isPrimary" : false,
+              "link" : "index"
+            }
+          ]
+        }
+      },
+      {
+        "contentTypeAlias" : "paragraphElement",
+        "model": {
+          "title" : "We are you",
+          "text" : "Hero text",
+          "subTitle" : "ABOUT US",
+          "leadText" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "splitterVisible" : true
+        }
+      },
+      {
+        "contentTypeAlias" : "callToActionElement",
+        "model": {
+          "title" : "We are you",
+          "text" : "Hero text",
+          "subTitle" : "ABOUT US",
+          "leadText" : "description",
+          "splitterVisible" : true,
+          "actions" : [
+            {
+              "text" : "Primary Button",
+              "isPrimary" : true,
+              "link" : "index"
+            },
+            {
+              "text" : "Secondary Button",
+              "isPrimary" : false,
+              "link" : "index"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

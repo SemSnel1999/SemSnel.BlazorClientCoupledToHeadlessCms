@@ -16,13 +16,17 @@ public class ContentDeliveryService
         _httpClient = httpClient;
     }
     
-    public async Task<IContentWrapper?> GetByUrl(string url = "/index")
+    public async Task<IContentWrapper?> GetByUrl(string url = null)
     {
-        url = "/index";
+        if (string.IsNullOrEmpty(url))
+        {
+            url = "index";
+        }
 
         try
         {
-            var jsonElement = await _httpClient.GetStreamAsync("sample-data/index.json");
+            
+            var jsonElement = await _httpClient.GetStreamAsync($"sample-data/{url}.json");
 
             var result = await JsonSerializer.DeserializeAsync<IContentWrapper>(jsonElement);
 
