@@ -1,11 +1,51 @@
 ﻿@page "/"
+@page "/{*PageRoute}"
+@using Client.CMS.Services
+@using Client.Infrastructure.CMS.Wrappers
+@using Client.CMS.Models.Content.Abstractions
 
-<PageTitle>
-    Index
-</PageTitle>
+@if (_isLoading)
+{
+    <p>loading...</p>
+}
+else
+{
+    @if (ContentWrapper is null)
+    {
+        <p>No content for page..</p>
+    }
+    else
+    {
+        <ContentPageTemplateSelector ContentWrapper="@ContentWrapper"></ContentPageTemplateSelector>
+    }
+}
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+@code {
+    private bool _isLoading = false;
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+    [Parameter]
+    public string PageRoute { get; set; } = "/";
+    
+    [Inject] 
+    public ContentDeliveryService ContentDeliveryService { get; set; }
+    
+    public IContentWrapper ContentWrapper { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _isLoading = true;
+
+        // In this example we will not be using persist data state
+        // When working with a content API it is advised to use the persist component state functionality
+        // Using this will eliminate the sudden reload
+        ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
+
+        _isLoading = false;
+    }
+}

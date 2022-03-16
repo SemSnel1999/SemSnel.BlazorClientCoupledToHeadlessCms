@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using Client.CMS.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
@@ -59,6 +60,9 @@ public class Startup
             
             return new HttpClient { BaseAddress = new Uri(baseAddress) };
         });
+        
+        
+        services.AddScoped<ContentDeliveryService>();
         
         services.AddRazorPages();
         
