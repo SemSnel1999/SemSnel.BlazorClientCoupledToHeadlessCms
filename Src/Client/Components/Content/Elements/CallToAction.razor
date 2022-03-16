@@ -1,4 +1,27 @@
 @inherits ContentElementComponent<CallToActionContent>
 
-<h3>CallToAction</h3>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+      <h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-gray-900">
+        @Model.Title
+      </h1>
+      @foreach (var action in @Model.Actions)
+              {
+                @if (action.IsPrimary)
+                {
+                  <a href="@action.Link" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                    @action.Text
+                  </a>
+                }
+                else
+                {
+                  <a href="@action.Link" class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                    @action.Text
+                  </a>
+                }
+              }
+    </div>
+  </div>
+</section>
 

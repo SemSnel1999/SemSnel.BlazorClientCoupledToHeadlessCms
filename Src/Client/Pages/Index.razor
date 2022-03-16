@@ -46,6 +46,8 @@ else
         // Using this will eliminate the sudden reload
         ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
 
+        StateHasChanged();
+        
         _isLoading = false;
     }
 }

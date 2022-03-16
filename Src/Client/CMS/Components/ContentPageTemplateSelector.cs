@@ -24,6 +24,7 @@ namespace Client.CMS.Components
 
             builder.OpenComponent(0, type);
             builder.AddAttribute(1, nameof(ContentComponent<object>.ContentWrapper), ContentWrapper);
+            builder.AddAttribute(2, nameof(ContentComponent<object>.Model), ContentWrapper.GetModel());
             builder.CloseComponent();
         }
 

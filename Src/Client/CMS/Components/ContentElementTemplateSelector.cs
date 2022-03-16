@@ -1,3 +1,4 @@
+using Client.CMS.Wrappers;
 using Client.Components.Content.Elements;
 using Client.Infrastructure.CMS.Wrappers;
 using Client.Shared.Models.Content.Elements;
@@ -9,6 +10,12 @@ namespace Client.CMS.Components
     public class ContentElementTemplateSelector : ComponentBase
     {
         [Parameter] public IEnumerable<IContentWrapper> Elements { get; set; }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            StateHasChanged();
+            this.ShouldRender();
+        }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
@@ -25,15 +32,16 @@ namespace Client.CMS.Components
         {
             var alias = content.ContentTypeAlias;
 
-            var hasElementType = this.TryGetComponentType(alias, out var type);
+            var hasTemplate = this.TryGetComponentType(alias, out var type);
 
-            if (!hasElementType)
+            if (!hasTemplate)
             {
                 type = typeof(UnknownElement);
             }
 
             builder.OpenComponent(0, type);
             builder.AddAttribute(1, nameof(ContentComponent<object>.ContentWrapper), content);
+            builder.AddAttribute(2, nameof(ContentComponent<object>.Model), content.GetModel());
             builder.CloseComponent();
         }
 

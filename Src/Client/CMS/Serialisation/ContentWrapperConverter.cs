@@ -11,11 +11,21 @@ public class ContentWrapperConverter : JsonConverter<IContentWrapper>
 {
     public override IContentWrapper? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
+        options = new JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        
         var element = JsonElement.ParseValue(ref reader);
+
+        var modelElement = element.GetProperty("model");
 
         var alias = element.GetProperty("contentTypeAlias").ToString();
         
         var modelType = GetModelType(alias);
+        
+        var model = JsonSerializer.Deserialize(modelElement, modelType, options);
 
         var wrapperType = GetWrapperType(modelType);
 
@@ -23,6 +33,10 @@ public class ContentWrapperConverter : JsonConverter<IContentWrapper>
 
         if (result is IContentWrapper contentWrapper)
         {
+            
+            
+            contentWrapper.SetModel(model);
+            
             return contentWrapper;
         }
 
