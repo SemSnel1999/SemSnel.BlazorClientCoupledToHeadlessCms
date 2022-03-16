@@ -60,8 +60,7 @@ public class Startup
             
             return new HttpClient { BaseAddress = new Uri(baseAddress) };
         });
-        
-        
+
         services.AddScoped<ContentDeliveryService>();
         
         services.AddRazorPages();

@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Client.CMS.Models.Content.Abstractions;
+using Client.CMS.Wrappers;
 using Client.Infrastructure.CMS.Wrappers;
 using Client.Shared.Models.Content.Elements;
 
@@ -10,18 +11,14 @@ public class ContentWrapperConverter : JsonConverter<IContentWrapper>
 {
     public override IContentWrapper? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var alias = GetAlias(ref reader);
+        var element = JsonElement.ParseValue(ref reader);
+
+        var alias = element.GetProperty("contentTypeAlias").ToString();
         
         var modelType = GetModelType(alias);
 
         var wrapperType = GetWrapperType(modelType);
-        
-        Console.WriteLine(alias);
-        Console.WriteLine(modelType.FullName);
-        Console.WriteLine(wrapperType.FullName);
 
-        var element = JsonElement.ParseValue(ref reader);
-        
         var result = JsonSerializer.Deserialize(element, wrapperType, options);
 
         if (result is IContentWrapper contentWrapper)

@@ -1,5 +1,7 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 using Client.CMS.Models.Content.Abstractions;
+using Client.CMS.Wrappers;
 using Client.Infrastructure.CMS.Wrappers;
 using Client.Shared.Models.Content.Elements;
 
@@ -20,7 +22,9 @@ public class ContentDeliveryService
 
         try
         {
-            var result = await _httpClient.GetFromJsonAsync<IContentWrapper>("sample-data/index.json");
+            var jsonElement = await _httpClient.GetStreamAsync("sample-data/index.json");
+
+            var result = await JsonSerializer.DeserializeAsync<IContentWrapper>(jsonElement);
 
             return result;
         }

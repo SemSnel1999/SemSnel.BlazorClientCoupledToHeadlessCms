@@ -1,11 +1,11 @@
 using System.Text.Json.Serialization;
 using Client.CMS.Serialisation;
+using Client.Infrastructure.CMS.Wrappers;
 
-namespace Client.Infrastructure.CMS.Wrappers;
+namespace Client.CMS.Wrappers;
 
 /// <inheritdoc />
 ///
-[JsonConverter(typeof(ContentWrapperConverter))]
 public class ContentWrapper : IContentWrapper
 {
     private object? _model;

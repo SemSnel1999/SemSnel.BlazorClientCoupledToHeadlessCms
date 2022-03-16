@@ -1,5 +1,9 @@
 {
     "contentTypeAlias" : "homePage",
     "url" : "index",
-    "model" : null
+    "model" : {
+        "elements" : [
+            
+        ]
+    }
 }

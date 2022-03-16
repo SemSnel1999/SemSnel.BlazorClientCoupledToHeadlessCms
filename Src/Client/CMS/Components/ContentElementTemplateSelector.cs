@@ -12,6 +12,9 @@ namespace Client.CMS.Components
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            if(Elements is null)
+                return;
+            
             foreach (var element in Elements)
             {
                 RenderElement(element, builder);
