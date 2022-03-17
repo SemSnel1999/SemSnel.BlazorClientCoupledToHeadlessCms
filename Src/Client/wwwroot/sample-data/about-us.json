@@ -1,8 +1,8 @@
 {
   "contentTypeAlias" : "contentPage",
   "model": {
-    "seoTitle" : "Home",
-    "seoDescription" : "This is the homepage description",
+    "seoTitle" : "About us",
+    "seoDescription" : "This is the about us description",
     "elements" : [
       {
         "contentTypeAlias" : "paragraphElement",
