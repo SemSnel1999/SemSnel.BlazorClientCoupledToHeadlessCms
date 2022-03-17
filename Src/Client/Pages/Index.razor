@@ -23,6 +23,10 @@ else
 
 @code {
     private bool _isLoading = false;
+    
+    [Inject] public PersistentComponentState PersistentComponentState { get; set; }
+
+    private PersistingComponentStateSubscription _componentStateSubscription;
 
     [Parameter]
     public string PageRoute { get; set; } = "/";
@@ -34,17 +38,40 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
+        _componentStateSubscription = PersistentComponentState.RegisterOnPersisting(PersistContent);
+    }
+
+    private Task PersistContent()
+    {
+        PersistentComponentState.PersistAsJson(PageRoute, ContentWrapper);
+
+        return Task.CompletedTask;
+    }
+    
+    public void Dispose()
+    {
+        _componentStateSubscription.Dispose();
     }
 
     protected override async Task OnParametersSetAsync()
     {
         _isLoading = true;
 
-        // In this example we will not be using persist data state
-        // When working with a content API it is advised to use the persist component state functionality
-        // Using this will eliminate the sudden reload
-        ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
+        if (string.IsNullOrEmpty(PageRoute))
+        {
+            PageRoute = "index";
+        }
+        
+        var isPeristed = PersistentComponentState.TryTakeFromJson<IContentWrapper>(PageRoute, out var restored);
+
+        if (isPeristed)
+        {
+            ContentWrapper = restored;
+        }
+        else
+        {
+            ContentWrapper = await ContentDeliveryService.GetByUrl(PageRoute);
+        }
 
         StateHasChanged();
         

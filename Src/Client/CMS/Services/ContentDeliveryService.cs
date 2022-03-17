@@ -4,6 +4,7 @@ using Client.CMS.Models.Content.Abstractions;
 using Client.CMS.Wrappers;
 using Client.Infrastructure.CMS.Wrappers;
 using Client.Shared.Models.Content.Elements;
+using Microsoft.AspNetCore.Components;
 
 namespace Client.CMS.Services;
 
@@ -15,7 +16,7 @@ public class ContentDeliveryService
     {
         _httpClient = httpClient;
     }
-    
+
     public async Task<IContentWrapper?> GetByUrl(string url = null)
     {
         if (string.IsNullOrEmpty(url))
@@ -25,7 +26,6 @@ public class ContentDeliveryService
 
         try
         {
-            
             var jsonElement = await _httpClient.GetStreamAsync($"sample-data/{url}.json");
 
             var result = await JsonSerializer.DeserializeAsync<IContentWrapper>(jsonElement);
@@ -34,7 +34,7 @@ public class ContentDeliveryService
         }
         catch (Exception ex)
         {
-            throw ex;
+            throw ex; // Do something with the exception
         }
         return null;
     }
