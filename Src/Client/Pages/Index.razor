@@ -2,7 +2,7 @@
 @page "/{*PageRoute}"
 @using Client.CMS.Services
 @using Client.Infrastructure.CMS.Wrappers
-@using Client.CMS.Models.Content.Abstractions
+@implements IDisposable
 
 @if (_isLoading)
 {
@@ -22,11 +22,12 @@ else
 
 
 @code {
+    private PersistingComponentStateSubscription _componentStateSubscription;
+    
     private bool _isLoading = false;
     
-    [Inject] public PersistentComponentState PersistentComponentState { get; set; }
-
-    private PersistingComponentStateSubscription _componentStateSubscription;
+    [Inject]
+    public PersistentComponentState PersistentComponentState { get; set; }
 
     [Parameter]
     public string PageRoute { get; set; } = "/";
